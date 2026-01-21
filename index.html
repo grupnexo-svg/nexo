@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexo - Cartão de Visita Digital</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            height: 420px;
+            perspective: 1000px;
+        }
+
+        .card-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-out;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .card-wrapper.flipped { transform: rotateY(180deg); }
+
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-front {
+            background: white;
+            border-left: 5px solid #0066cc;
+        }
+
+        .card-back {
+            background: linear-gradient(to bottom right, #f0f7ff, #e0f2fe);
+            border-left: 5px solid #0066cc;
+            transform: rotateY(180deg);
+        }
+
+        .card-content { width: 100%; text-align: center; }
+
+        .logo {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 25px;
+        }
+
+        .logo img { width: 100%; height: 100%; object-fit: contain; }
+
+        .company-type {
+            font-size: 18px;
+            color: #003d7a;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .company-description {
+            font-size: 14px;
+            color: #1e293b;
+            line-height: 1.6;
+            max-width: 420px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        .hint {
+            position: absolute;
+            bottom: 18px;
+            right: 20px;
+            font-size: 12px;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .contact-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 13px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .contact-item:hover {
+            background: white;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+        }
+
+        .contact-item.primary {
+            background: rgba(0,102,204,0.08);
+        }
+
+        .contact-icon {
+            width: 22px;
+            height: 22px;
+            color: #0066cc;
+            flex-shrink: 0;
+        }
+
+        .contact-info { flex: 1; }
+
+        .contact-label {
+            font-size: 11px;
+            color: #003d7a;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .contact-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            word-break: break-word;
+        }
+
+        .footer {
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px solid #bfdbfe;
+            font-size: 11px;
+            color: #1e293b;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container { height: 520px; }
+            .card { padding: 28px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card-wrapper" id="cardWrapper">
+
+        <div class="card card-front">
+            <div class="card-content">
+                <div class="logo">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 400'%3E%3Ctext x='50%25' y='50%25' font-size='120' font-weight='bold' fill='%230066cc' text-anchor='middle' dominant-baseline='middle' font-family='Arial, sans-serif'%3ENEXO%3C/text%3E%3C/svg%3E" alt="Nexo Logo">
+                </div>
+                <div class="company-type">Gestão de Obras · Construção · Reformas</div>
+                <div class="company-description">Controle, qualidade e profissionalismo do planejamento à entrega</div>
+            </div>
+            <div class="hint">Clique para contatos</div>
+        </div>
+
+        <div class="card card-back">
+            <div class="card-content">
+                <div class="contact-title">Entre em Contato</div>
+
+                <div class="contact-item primary" onclick="window.open('tel:+5551997691016')" aria-label="Ligar para Nexo">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.56.57 1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.24 1.01l-2.2 2.22z"/>
+                    </svg>
+                    <div class="contact-info">
+                        <div class="contact-label">Telefone / WhatsApp</div>
+                        <div class="contact-value">+55 (51) 99769-1016</div>
+                    </div>
+                </div>
+
+                <div class="contact-item" onclick="window.open('mailto:gruponexo@gmail.com')" aria-label="Enviar e-mail">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <div class="contact-info">
+                        <div class="contact-label">E-mail</div>
+                        <div class="contact-value">gruponexo@gmail.com</div>
+                    </div>
+                </div>
+
+                <div class="contact-item" onclick="window.open('https://maps.google.com/?q=Rio+Grande+do+Sul')" aria-label="Localização">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+                    </svg>
+                    <div class="contact-info">
+                        <div class="contact-label">Atendimento</div>
+                        <div class="contact-value">Rio Grande do Sul</div>
+                    </div>
+                </div>
+
+                <div class="footer">© 2026 Grupo Nexo · Atendimento profissional</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const card = document.getElementById('cardWrapper');
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+    if (isTouch) {
+        card.addEventListener('click', () => card.classList.toggle('flipped'));
+    } else {
+        card.addEventListener('mouseenter', () => card.classList.add('flipped'));
+        card.addEventListener('mouseleave', () => card.classList.remove('flipped'));
+    }
+</script>
+</body>
+</html>
